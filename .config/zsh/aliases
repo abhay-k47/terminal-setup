@@ -1,0 +1,4 @@
+alias ll="ls -lArth"
+alias mkdir="mkdir -p"
+alias du="du -sh"
+alias df="df -h"

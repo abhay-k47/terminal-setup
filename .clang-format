@@ -1,0 +1,10 @@
+# Use Google style as the base
+BasedOnStyle: Google
+
+# Override indentation
+IndentWidth: 2
+TabWidth: 2
+UseTab: Never  # use spaces, not tabs
+
+# Optional: line length (Google default is 80)
+ColumnLimit: 80

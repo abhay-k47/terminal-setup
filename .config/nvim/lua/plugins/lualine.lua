@@ -6,7 +6,7 @@ return {
       options = {
         icons_enabled = true,
         -- single statusline across splits
-        -- globalstatus = true, 
+        -- globalstatus = true,
         theme = 'everforest',
         component_separators = { left = '|', right = '|' },
         section_separators = { left = '', right = '' }

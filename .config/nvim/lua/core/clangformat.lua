@@ -24,3 +24,4 @@ vim.keymap.set(
   ':ClangFormat<CR>',
   { noremap = true, silent = true, desc = 'Format file with clang-format' }
 )
+

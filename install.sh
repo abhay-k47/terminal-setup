@@ -2,7 +2,9 @@ brew install --cask ghostty
 brew install tmux
 brew install nvim
 brew install llvm
+brew install bear
 brew install ripgrep
+brew install node
 
 # Install nerd fonts
 mkdir -p ~/.local/share/fonts && \

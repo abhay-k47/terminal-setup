@@ -46,16 +46,13 @@ A comprehensive terminal configuration setup for **Zsh**, **Tmux**, and **Neovim
 
 ## Installation
 
-1. Clone the repository and run the installation script
+1. Clone the repository (including submodules), run the installation script, and link the configuration files to your home directory:
    ```bash
    git clone --recurse-submodules https://github.com/abhay-k47/terminal-setup.git
    cd terminal-setup
    bash install.sh
+   ln -s $(pwd)/.config $HOME/.config
+   ln -s $(pwd)/.clang-format $HOME/.clang-format
+   ln -s $HOME/.config/zsh/config $HOME/.zshrc
    ```
-2. Link configurations to $HOME
-    ```bash
-    ln -s $(pwd)/.config $HOME/.config
-    ln -s $(pwd)/.clang-format $HOME/.clang-format
-    ln -s $HOME/.config/zsh/config $HOME/.zshrc
-    ```
-
+2. Open Neovim and run `:Lazy sync` to update plugins, then `:Copilot setup` to authorize and enable GitHub Copilot.

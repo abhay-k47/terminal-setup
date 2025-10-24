@@ -1,0 +1,24 @@
+source ~/.config/git/bin/fzf_git_branch.sh
+source ~/.config/git/bin/fzf_git_commit.sh
+source ~/.config/git/bin/fzf_git_file.sh
+
+case "$1" in
+  branch|br)
+    _fzf_git_branch
+    ;;
+  commit|ci)
+    _fzf_git_commit
+    ;;
+  file|fl)
+    _fzf_git_file
+    ;;
+  *)
+    echo "Error: Invalid argument '$1'"
+    echo "Arguments:"
+    echo "  branch  Fuzzy find git branches"
+    echo "  file    Fuzzy find git files"
+    echo "  commit  Fuzzy find git commits"
+    exit 1
+    ;;
+esac
+

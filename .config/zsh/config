@@ -10,6 +10,9 @@ source ~/.config/zsh/aliases
 # options
 source ~/.config/zsh/options
 
+# custom git commands
+export PATH=$PATH:~/.config/git/bin
+
 # plugins
 source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -21,6 +24,8 @@ autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+eval "$(zoxide init --cmd cd zsh)"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 

@@ -5,6 +5,8 @@ brew install llvm
 brew install bear
 brew install ripgrep
 brew install node
+brew install zoxide
+brew install fzf
 
 # Install nerd fonts
 mkdir -p ~/.local/share/fonts && \

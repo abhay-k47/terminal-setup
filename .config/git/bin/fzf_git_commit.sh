@@ -1,13 +1,18 @@
 function _fzf_git_commit () {
   local -r branch_prompt='Branch > '
   local -r all_prompt='All > '
+  local -r directory="$@"
 
-  local -r git_log="git log --graph --color --format='%C(white)%h %C(green)%cs | %C(blue)%s%C(red)%d %C(yellow)[%an]'"
-  local -r git_log_all="git log --all --graph --color --format='%C(white)%h %C(green)%cs | %C(blue)%s%C(red)%d %C(yellow)[%an]'"
+  local -r git_log="git log --graph --color --format='%C(white)%h %C(green)%cs | %C(blue)%s%C(red)%d %C(yellow)[%an]' $directory"
+  local -r git_log_all="git log --all --graph --color --format='%C(white)%h %C(green)%cs | %C(blue)%s%C(red)%d %C(yellow)[%an]' $directory"
 
   local -r get_hash="echo {} | grep -o '[a-f0-9]\{7\}' | sed -n '1p'"
   local -r git_show_summary="[[ \$($get_hash) != '' ]] && git show --abbrev-commit --compact-summary --color \$($get_hash)"
   local -r git_show_subshell=$(cat <<-EOF
+    [[ \$($get_hash) != '' ]] && sh -c "git show --color \$($get_hash) $directory | less -R"
+EOF
+  )
+  local -r git_show_full_subshell=$(cat <<-EOF
     [[ \$($get_hash) != '' ]] && sh -c "git show --color \$($get_hash) | less -R"
 EOF
   )
@@ -15,14 +20,16 @@ EOF
   local -r git_checkout="[[ \$($get_hash) != '' ]] && git checkout \$($get_hash)"
 
   local -r header_branch=$(cat <<-EOF
-    > ENTER to display the diff with less
+    > ENTER to show the commit
+    > ALT-ENTER to show the full commit
     > ALT-S to switch to All Commits mode
     > ALT-C to checkout the commit
 EOF
   )
 
   local -r header_all=$(cat <<-EOF
-    > ENTER to display the diff with less
+    > ENTER to show the commit
+    > ALT-ENTER to show the full commit
     > ALT-S to switch to Branch Commits mode
 EOF
   )
@@ -39,6 +46,7 @@ EOF
     --header="$header_branch" \
     --preview="$git_show_summary" \
     --bind="enter:execute($git_show_subshell)" \
+    --bind="alt-enter:execute($git_show_full_subshell)" \
     --bind="alt-s:transform:[[ \$FZF_PROMPT =~ '$branch_prompt' ]] && echo '$mode_all' || echo '$mode_branch'" \
     --bind="alt-c:execute($git_checkout)+abort" \
     --bind='alt-p:toggle-preview' \

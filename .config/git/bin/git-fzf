@@ -4,13 +4,13 @@ source ~/.config/git/bin/fzf_git_file.sh
 
 case "$1" in
   branch|br)
-    _fzf_git_branch
+    _fzf_git_branch "${@:2}"
     ;;
   commit|ci)
-    _fzf_git_commit
+    _fzf_git_commit "${@:2}"
     ;;
   file|fl)
-    _fzf_git_file
+    _fzf_git_file "${@:2}"
     ;;
   *)
     echo "Error: Invalid argument '$1'"

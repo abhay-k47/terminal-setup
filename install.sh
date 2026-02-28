@@ -1,12 +1,18 @@
 brew install --cask ghostty
+brew install zsh
 brew install tmux
 brew install nvim
 brew install llvm
+brew install clang-format
+brew install cmake
 brew install bear
 brew install ripgrep
 brew install node
 brew install zoxide
 brew install fzf
+brew install rust
+cargo install stylua
+cargo install git-delta
 
 # Install nerd fonts
 mkdir -p ~/.local/share/fonts && \

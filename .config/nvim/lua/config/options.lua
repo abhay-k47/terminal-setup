@@ -53,14 +53,11 @@ vim.opt.inccommand = 'split'
 
 -- Sync clipboard between OS and Neovim.
 -- Scheduled after UiEnter to prevent startup slowdown.
-vim.schedule(
-  function()
-    vim.opt.clipboard = 'unnamedplus'
-  end
-)
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
 
 -- Turn off lsp logging
-vim.lsp.set_log_level("off")
+vim.lsp.set_log_level('off')
 -- Turn on for debugging:
 -- vim.lsp.set_log_level("debug")
-

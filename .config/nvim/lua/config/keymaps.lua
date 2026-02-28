@@ -16,4 +16,3 @@ vim.keymap.set('t', '<C-w>', [[<C-\><C-n>]], { silent = true })
 
 ------------------- Diagnostic Keymaps -------------------
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-

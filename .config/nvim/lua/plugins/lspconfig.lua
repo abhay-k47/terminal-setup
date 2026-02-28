@@ -1,6 +1,6 @@
 return {
-  "neovim/nvim-lspconfig",
-  dependencies = { "hrsh7th/cmp-nvim-lsp" },
+  'neovim/nvim-lspconfig',
+  dependencies = { 'hrsh7th/cmp-nvim-lsp' },
   config = function()
     vim.diagnostic.config({
       signs = {
@@ -9,13 +9,12 @@ return {
           [vim.diagnostic.severity.WARN] = '',
           [vim.diagnostic.severity.HINT] = '󰠠',
           [vim.diagnostic.severity.INFO] = '',
-        }
+        },
       },
       severity_sort = true,
       virtual_text = { prefix = '●' },
     })
-    vim.lsp.config.clangd = require("lsp.clangd")
-    vim.lsp.enable("clangd")
-  end
+    vim.lsp.config.clangd = require('lsp.clangd')
+    vim.lsp.enable('clangd')
+  end,
 }
-

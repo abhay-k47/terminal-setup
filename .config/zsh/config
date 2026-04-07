@@ -14,18 +14,20 @@ source ~/.config/zsh/options
 export PATH=$PATH:~/.config/git/bin
 
 # plugins
+source ~/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
 # completion
-autoload -Uz compinit
-compinit
-zstyle ':completion:*' menu select
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu no
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-
-eval "$(zoxide init --cmd cd zsh)"
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+eval "$(delta --generate-completion zsh)"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
@@ -39,6 +41,10 @@ source ~/.config/zsh/.p10k.zsh
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+
+if [[ -o interactive ]] && command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
 
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.local/bin
